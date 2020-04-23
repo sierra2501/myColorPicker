@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<widget>
+    <uuid>42c1ddbb-e6dc-4bdf-9fb5-96ac736e6d28</uuid>
+    <name lang="ja">マイカラーピッカー</name>
+    <name lang="en">myColorPicker</name>
+    <url>index.html</url>
+    <version>1.0</version>
+    <description lang="ja">マイカラーピッカー</description>
+    <description lang="en">myColorPicker</description>
+    <window initial_size="400 200" position="0.42 0.63" resizeable="true">
+    </window>
+</widget>

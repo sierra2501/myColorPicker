@@ -9,12 +9,66 @@
   <link rel="stylesheet" href="css/normalize.css" />
   <link rel="stylesheet" href="css/gannet.css" />
   <link rel="stylesheet" href="css/style.css" />
-
+  <script src="js/readExternalFile.js"></script>
+  <script src="js/checkShade3D.js"></script>
   <script src="js/myColorPicker.js"></script>
+
+  <script>
+    function clickShadeBtn ( point, mode ) {
+
+      var py_src
+      var result_str
+      var result_ary
+      var r
+      var g
+      var b
+      var rgb_array
+
+      // 外部ファイルのPythonコードを読み込み.
+      py_src = readFileToString('py/setDiffuseColor.py');
+
+      // 抽出する ==========================================================================================
+      if (mode === "EXTRACT"){
+
+        py_src = py_src.replace("TARGET_MODE", "\"" + mode + "\"");
+        py_src = py_src.replace("TARGET_RGB", [0,0,0]);
+
+        // スクリプトを実行.
+        result_str = window.external.setScript(py_src);
+        result_ary = result_str.split(',');
+
+        document.getElementById('text-r-' + point).value = parseInt(result_ary[0]*255)
+        document.getElementById('text-g-' + point).value = parseInt(result_ary[1]*255)
+        document.getElementById('text-b-' + point).value = parseInt(result_ary[2]*255)
+
+        reflectRgb ("text", "r", point);
+        reflectRgb ("text", "g", point);
+        reflectRgb ("text", "b", point);
+
+      // 設定する ==========================================================================================
+      }else if (mode === "SET"){
+
+        // textからRGBの値を取り出す.
+        r = parseInt(document.getElementById('text-r-' + point).value);
+        g = parseInt(document.getElementById('text-g-' + point).value);
+        b = parseInt(document.getElementById('text-b-' + point).value);
+        rgb_array = [r/255, g/255, b/255];
+    
+        py_src = py_src.replace("TARGET_MODE", "\"" + mode + "\"");
+        py_src = py_src.replace("TARGET_RGB", rgb_array);
+
+        // スクリプトを実行.
+        window.external.setScript(py_src);
+
+      }
+    }
+  </script>
+
+
 
 </head>
 
-<body id = "wrapper">
+<body id = "wrapper" onload="checkShade3D();">
 
   <header id = "header">
     <h3>myColorPicker</h3>
@@ -39,22 +93,36 @@
         <div class = "rgb-area">
           <div>
             <label for="range-r-1" class="label-rgb">R</label>
-            <input type="range" id = "range-r-1" class="range-rgb" value="255" min="0" max="255" step="1" oninput="changeRange('range', 'r', '1');" />
-            <input type="text" id = "text-r-1" class="text-rgb" value="255" oninput="changeRange('text', 'r', '1');" />
+            <input type="range" id = "range-r-1" value="255" min="0" max="255" step="1" oninput="reflectRgb('range', 'r', '1');" />
+            <input type="button" value="-" class="btn-rgb" onclick="clickCountBtn('r', '1', 'minus');"/>
+            <input type="text" id = "text-r-1" value="255" oninput="reflectRgb('text', 'r', '1');" />
+            <input type="button" value="+" class="btn-rgb" onclick="clickCountBtn('r', '1', 'plus');"/>
           </div>
           <div>
             <label for="range-g-1" class="label-rgb">G</label>
-            <input type="range" id = "range-g-1" class="range-rgb" value="255" min="0" max="255" step="1" oninput="changeRange('range', 'g', '1');" />
-            <input type="text" id = "text-g-1" class="text-rgb" value="255" oninput="changeRange('text', 'g', '1');" />
+            <input type="range" id = "range-g-1" value="255" min="0" max="255" step="1" oninput="reflectRgb('range', 'g', '1');" />
+            <input type="button" value="-" class="btn-rgb" onclick="clickCountBtn('g', '1', 'minus');"/>
+            <input type="text" id = "text-g-1" value="255" oninput="reflectRgb('text', 'g', '1');" />
+            <input type="button" value="+" class="btn-rgb" onclick="clickCountBtn('g', '1', 'plus');"/>
           </div>
           <div>
             <label for="range-b-1" class="label-rgb">B</label>
-            <input type="range" id = "range-b-1" class="range-rgb" value="255" min="0" max="255" step="1" oninput="changeRange('range', 'b', '1');" />
-            <input type="text" id = "text-b-1" class="text-rgb" value="255" oninput="changeRange('text', 'b', '1');" />
+            <input type="range" id = "range-b-1" value="255" min="0" max="255" step="1" oninput="reflectRgb('range', 'b', '1');" />
+            <input type="button" value="-" class="btn-rgb" onclick="clickCountBtn('b', '1', 'minus');"/>
+            <input type="text" id = "text-b-1" value="255" oninput="reflectRgb('text', 'b', '1');" />
+            <input type="button" value="+" class="btn-rgb" onclick="clickCountBtn('b', '1', 'plus');"/>
           </div>
         </div>
         <div class = "hex-area">
           <input type="text" id = "text-hex-1" class="text-hex" value="#ffffff" oninput="reflectHex('1');"/>
+        </div>
+        <div class = "sh-btn-area">
+          <div>
+            <input type="button" value="抽出する" class="btn-sh" onclick="clickShadeBtn('1' , 'EXTRACT');"/>
+          </div>
+          <div>
+            <input type="button" value="設定する" class="btn-sh" onclick="clickShadeBtn('1', 'SET');"/>
+          </div>
         </div>
       </form>
     </section>
@@ -67,22 +135,36 @@
         <div class = "rgb-area">
           <div>
             <label for="range-r-2" class="label-rgb">R</label>
-            <input type="range" id = "range-r-2" class="range-rgb" value="255" min="0" max="255" step="1" oninput="changeRange('range', 'r', '2');" />
-            <input type="text" id = "text-r-2" class="text-rgb" value="255" oninput="changeRange('text', 'r', '2');" />
+            <input type="range" id = "range-r-2" value="255" min="0" max="255" step="1" oninput="reflectRgb('range', 'r', '2');" />
+            <input type="button" value="-" class="btn-rgb" onclick="clickCountBtn('r', '2', 'minus');"/>
+            <input type="text" id = "text-r-2" value="255" oninput="reflectRgb('text', 'r', '2');" />
+            <input type="button" value="+" class="btn-rgb" onclick="clickCountBtn('r', '2', 'plus');"/>
           </div>
           <div>
             <label for="range-g-2" class="label-rgb">G</label>
-            <input type="range" id = "range-g-2" class="range-rgb" value="255" min="0" max="255" step="1" oninput="changeRange('range', 'g', '2');" />
-            <input type="text" id = "text-g-2" class="text-rgb" value="255" oninput="changeRange('text', 'g', '2');" />
+            <input type="range" id = "range-g-2" value="255" min="0" max="255" step="1" oninput="reflectRgb('range', 'g', '2');" />
+            <input type="button" value="-" class="btn-rgb" onclick="clickCountBtn('g', '2', 'minus');"/>
+            <input type="text" id = "text-g-2" value="255" oninput="reflectRgb('text', 'g', '2');" />
+            <input type="button" value="+" class="btn-rgb" onclick="clickCountBtn('g', '2', 'plus');"/>
           </div>
           <div>
             <label for="range-b-2" class="label-rgb">B</label>
-            <input type="range" id = "range-b-2" class="range-rgb" value="255" min="0" max="255" step="1" oninput="changeRange('range', 'b', '2');" />
-            <input type="text" id = "text-b-2" class="text-rgb" value="255" oninput="changeRange('text', 'b', '2');" />
+            <input type="range" id = "range-b-2" value="255" min="0" max="255" step="1" oninput="reflectRgb('range', 'b', '2');" />
+            <input type="button" value="-" class="btn-rgb" onclick="clickCountBtn('b', '2', 'minus');"/>
+            <input type="text" id = "text-b-2" value="255" oninput="reflectRgb('text', 'b', '2');" />
+            <input type="button" value="+" class="btn-rgb" onclick="clickCountBtn('b', '2', 'plus');"/>
           </div>
         </div>
         <div class = "hex-area">
           <input type="text" id = "text-hex-2" class="text-hex" value="#ffffff" oninput="reflectHex('2');"/>
+        </div>
+        <div class = "sh-btn-area">
+          <div>
+            <input type="button" value="抽出する" class="btn-sh" onclick="clickShadeBtn('2' , 'EXTRACT');"/>
+          </div>
+          <div>
+            <input type="button" value="設定する" class="btn-sh" onclick="clickShadeBtn('2', 'SET');"/>
+          </div>
         </div>
       </form>
     </section>
@@ -95,22 +177,36 @@
         <div class = "rgb-area">
           <div>
             <label for="range-r-3" class="label-rgb">R</label>
-            <input type="range" id = "range-r-3" class="range-rgb" value="255" min="0" max="255" step="1" oninput="changeRange('range', 'r', '3');" />
-            <input type="text" id = "text-r-3" class="text-rgb" value="255" oninput="changeRange('text', 'r', '3');" />
+            <input type="range" id = "range-r-3" value="255" min="0" max="255" step="1" oninput="reflectRgb('range', 'r', '3');" />
+            <input type="button" value="-" class="btn-rgb" onclick="clickCountBtn('r', '3', 'minus');"/>
+            <input type="text" id = "text-r-3" value="255" oninput="reflectRgb('text', 'r', '3');" />
+            <input type="button" value="+" class="btn-rgb" onclick="clickCountBtn('r', '3', 'plus');"/>
           </div>
           <div>
             <label for="range-g-3" class="label-rgb">G</label>
-            <input type="range" id = "range-g-3" class="range-rgb" value="255" min="0" max="255" step="1" oninput="changeRange('range', 'g', '3');" />
-            <input type="text" id = "text-g-3" class="text-rgb" value="255" oninput="changeRange('text', 'g', '3');" />
+            <input type="range" id = "range-g-3" value="255" min="0" max="255" step="1" oninput="reflectRgb('range', 'g', '3');" />
+            <input type="button" value="-" class="btn-rgb" onclick="clickCountBtn('g', '3', 'minus');"/>
+            <input type="text" id = "text-g-3" value="255" oninput="reflectRgb('text', 'g', '3');" />
+            <input type="button" value="+" class="btn-rgb" onclick="clickCountBtn('g', '3', 'plus');"/>
           </div>
           <div>
             <label for="range-b-3" class="label-rgb">B</label>
-            <input type="range" id = "range-b-3" class="range-rgb" value="255" min="0" max="255" step="1" oninput="changeRange('range', 'b', '3');" />
-            <input type="text" id = "text-b-3" class="text-rgb" value="255" oninput="changeRange('text', 'b', '3');" />
+            <input type="range" id = "range-b-3" value="255" min="0" max="255" step="1" oninput="reflectRgb('range', 'b', '3');" />
+            <input type="button" value="-" class="btn-rgb" onclick="clickCountBtn('b', '3', 'minus');"/>
+            <input type="text" id = "text-b-3" value="255" oninput="reflectRgb('text', 'b', '3');" />
+            <input type="button" value="+" class="btn-rgb" onclick="clickCountBtn('b', '3', 'plus');"/>
           </div>
         </div>
         <div class = "hex-area">
           <input type="text" id = "text-hex-3" class="text-hex" value="#ffffff" oninput="reflectHex('3');"/>
+        </div>
+        <div class = "sh-btn-area">
+          <div>
+            <input type="button" value="抽出する" class="btn-sh" onclick="clickShadeBtn('3' , 'EXTRACT');"/>
+          </div>
+          <div>
+            <input type="button" value="設定する" class="btn-sh" onclick="clickShadeBtn('3', 'SET');"/>
+          </div>
         </div>
       </form>
     </section>
@@ -123,22 +219,36 @@
         <div class = "rgb-area">
           <div>
             <label for="range-r-4" class="label-rgb">R</label>
-            <input type="range" id = "range-r-4" class="range-rgb" value="255" min="0" max="255" step="1" oninput="changeRange('range', 'r', '4');" />
-            <input type="text" id = "text-r-4" class="text-rgb" value="255" oninput="changeRange('text', 'r', '4');" />
+            <input type="range" id = "range-r-4" value="255" min="0" max="255" step="1" oninput="reflectRgb('range', 'r', '4');" />
+            <input type="button" value="-" class="btn-rgb" onclick="clickCountBtn('r', '4', 'minus');"/>
+            <input type="text" id = "text-r-4" value="255" oninput="reflectRgb('text', 'r', '4');" />
+            <input type="button" value="+" class="btn-rgb" onclick="clickCountBtn('r', '4', 'plus');"/>
           </div>
           <div>
             <label for="range-g-4" class="label-rgb">G</label>
-            <input type="range" id = "range-g-4" class="range-rgb" value="255" min="0" max="255" step="1" oninput="changeRange('range', 'g', '4');" />
-            <input type="text" id = "text-g-4" class="text-rgb" value="255" oninput="changeRange('text', 'g', '4');" />
+            <input type="range" id = "range-g-4" value="255" min="0" max="255" step="1" oninput="reflectRgb('range', 'g', '4');" />
+            <input type="button" value="-" class="btn-rgb" onclick="clickCountBtn('g', '4', 'minus');"/>
+            <input type="text" id = "text-g-4" value="255" oninput="reflectRgb('text', 'g', '4');" />
+            <input type="button" value="+" class="btn-rgb" onclick="clickCountBtn('g', '4', 'plus');"/>
           </div>
           <div>
             <label for="range-b-4" class="label-rgb">B</label>
-            <input type="range" id = "range-b-4" class="range-rgb" value="255" min="0" max="255" step="1" oninput="changeRange('range', 'b', '4');" />
-            <input type="text" id = "text-b-4" class="text-rgb" value="255" oninput="changeRange('text', 'b', '4');" />
+            <input type="range" id = "range-b-4" value="255" min="0" max="255" step="1" oninput="reflectRgb('range', 'b', '4');" />
+            <input type="button" value="-" class="btn-rgb" onclick="clickCountBtn('b', '4', 'minus');"/>
+            <input type="text" id = "text-b-4" value="255" oninput="reflectRgb('text', 'b', '4');" />
+            <input type="button" value="+" class="btn-rgb" onclick="clickCountBtn('b', '4', 'plus');"/>
           </div>
         </div>
         <div class = "hex-area">
           <input type="text" id = "text-hex-4" class="text-hex" value="#ffffff" oninput="reflectHex('4');"/>
+        </div>
+        <div class = "sh-btn-area">
+          <div>
+            <input type="button" value="抽出する" class="btn-sh" onclick="clickShadeBtn('4' , 'EXTRACT');"/>
+          </div>
+          <div>
+            <input type="button" value="設定する" class="btn-sh" onclick="clickShadeBtn('4', 'SET');"/>
+          </div>
         </div>
       </form>
     </section>
@@ -151,22 +261,36 @@
         <div class = "rgb-area">
           <div>
             <label for="range-r-5" class="label-rgb">R</label>
-            <input type="range" id = "range-r-5" class="range-rgb" value="255" min="0" max="255" step="1" oninput="changeRange('range', 'r', '5');" />
-            <input type="text" id = "text-r-5" class="text-rgb" value="255" oninput="changeRange('text', 'r', '5');" />
+            <input type="range" id = "range-r-5" value="255" min="0" max="255" step="1" oninput="reflectRgb('range', 'r', '5');" />
+            <input type="button" value="-" class="btn-rgb" onclick="clickCountBtn('r', '5', 'minus');"/>
+            <input type="text" id = "text-r-5" value="255" oninput="reflectRgb('text', 'r', '5');" />
+            <input type="button" value="+" class="btn-rgb" onclick="clickCountBtn('r', '5', 'plus');"/>
           </div>
           <div>
             <label for="range-g-5" class="label-rgb">G</label>
-            <input type="range" id = "range-g-5" class="range-rgb" value="255" min="0" max="255" step="1" oninput="changeRange('range', 'g', '5');" />
-            <input type="text" id = "text-g-5" class="text-rgb" value="255" oninput="changeRange('text', 'g', '5');" />
+            <input type="range" id = "range-g-5" value="255" min="0" max="255" step="1" oninput="reflectRgb('range', 'g', '5');" />
+            <input type="button" value="-" class="btn-rgb" onclick="clickCountBtn('g', '5', 'minus');"/>
+            <input type="text" id = "text-g-5" value="255" oninput="reflectRgb('text', 'g', '5');" />
+            <input type="button" value="+" class="btn-rgb" onclick="clickCountBtn('g', '5', 'plus');"/>
           </div>
           <div>
             <label for="range-b-5" class="label-rgb">B</label>
-            <input type="range" id = "range-b-5" class="range-rgb" value="255" min="0" max="255" step="1" oninput="changeRange('range', 'b', '5');" />
-            <input type="text" id = "text-b-5" class="text-rgb" value="255" oninput="changeRange('text', 'b', '5');" />
+            <input type="range" id = "range-b-5" value="255" min="0" max="255" step="1" oninput="reflectRgb('range', 'b', '5');" />
+            <input type="button" value="-" class="btn-rgb" onclick="clickCountBtn('b', '5', 'minus');"/>
+            <input type="text" id = "text-b-5" value="255" oninput="reflectRgb('text', 'b', '5');" />
+            <input type="button" value="+" class="btn-rgb" onclick="clickCountBtn('b', '5', 'plus');"/>
           </div>
         </div>
         <div class = "hex-area">
           <input type="text" id = "text-hex-5" class="text-hex" value="#ffffff" oninput="reflectHex('5');"/>
+        </div>
+        <div class = "sh-btn-area">
+          <div>
+            <input type="button" value="抽出する" class="btn-sh" onclick="clickShadeBtn('5' , 'EXTRACT');"/>
+          </div>
+          <div>
+            <input type="button" value="設定する" class="btn-sh" onclick="clickShadeBtn('5', 'SET');"/>
+          </div>
         </div>
       </form>
     </section>
