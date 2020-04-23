@@ -83,3 +83,24 @@ function reflectHex (point){
     document.getElementById('text-g-' + point).value = parseInt(g)
     document.getElementById('text-b-' + point).value = parseInt(b)
 }
+
+// ============================================================================================================
+// カウントボタンの動作
+// ============================================================================================================
+function clickCountBtn (color, point, count) {
+
+    // 現在の値
+    var num = parseInt(document.getElementById('text-' + color + '-' + point).value, 10);
+
+    // カウントアップ・ダウン
+    if (count === "plus" && num < 255){
+        document.getElementById('text-' + color + '-' + point).value = num + 1;
+    }else if(count === "minus" && num > 0){
+        document.getElementById('text-' + color + '-' + point).value = num - 1;
+    }else{
+        document.getElementById('text-' + color + '-' + point).value = num;
+    }
+
+    changeRange ("text", color, point)
+
+}
