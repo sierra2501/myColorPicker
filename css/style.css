@@ -53,12 +53,19 @@
   width: 10px;
   display: none;
 }
-.range-rgb{
+.range-rgb-web{
   width: 65px;
   vertical-align : middle;
 }
-.text-rgb{
+.range-rgb-shade{
+  display: none;
+}
+.text-rgb-web{
   width: 25px;
+  text-align: center;
+}
+.text-rgb-shade{
+  width: 80px;
   text-align: center;
 }
 .text-hex{

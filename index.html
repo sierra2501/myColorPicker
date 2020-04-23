@@ -10,11 +10,12 @@
   <link rel="stylesheet" href="css/gannet.css" />
   <link rel="stylesheet" href="css/style.css" />
 
+  <script src="js/checkShade3D.js"></script>
   <script src="js/myColorPicker.js"></script>
 
 </head>
 
-<body id = "wrapper">
+<body id = "wrapper" onload="checkShade3D();">
 
   <header id = "header">
     <h3>myColorPicker</h3>
@@ -39,18 +40,18 @@
         <div class = "rgb-area">
           <div>
             <label for="range-r-1" class="label-rgb">R</label>
-            <input type="range" id = "range-r-1" class="range-rgb" value="255" min="0" max="255" step="1" oninput="changeRange('range', 'r', '1');" />
-            <input type="text" id = "text-r-1" class="text-rgb" value="255" oninput="changeRange('text', 'r', '1');" />
+            <input type="range" id = "range-r-1" value="255" min="0" max="255" step="1" oninput="changeRange('range', 'r', '1');" />
+            <input type="text" id = "text-r-1" value="255" oninput="changeRange('text', 'r', '1');" />
           </div>
           <div>
             <label for="range-g-1" class="label-rgb">G</label>
-            <input type="range" id = "range-g-1" class="range-rgb" value="255" min="0" max="255" step="1" oninput="changeRange('range', 'g', '1');" />
-            <input type="text" id = "text-g-1" class="text-rgb" value="255" oninput="changeRange('text', 'g', '1');" />
+            <input type="range" id = "range-g-1" value="255" min="0" max="255" step="1" oninput="changeRange('range', 'g', '1');" />
+            <input type="text" id = "text-g-1" value="255" oninput="changeRange('text', 'g', '1');" />
           </div>
           <div>
             <label for="range-b-1" class="label-rgb">B</label>
-            <input type="range" id = "range-b-1" class="range-rgb" value="255" min="0" max="255" step="1" oninput="changeRange('range', 'b', '1');" />
-            <input type="text" id = "text-b-1" class="text-rgb" value="255" oninput="changeRange('text', 'b', '1');" />
+            <input type="range" id = "range-b-1" value="255" min="0" max="255" step="1" oninput="changeRange('range', 'b', '1');" />
+            <input type="text" id = "text-b-1" value="255" oninput="changeRange('text', 'b', '1');" />
           </div>
         </div>
         <div class = "hex-area">
@@ -67,18 +68,18 @@
         <div class = "rgb-area">
           <div>
             <label for="range-r-2" class="label-rgb">R</label>
-            <input type="range" id = "range-r-2" class="range-rgb" value="255" min="0" max="255" step="1" oninput="changeRange('range', 'r', '2');" />
-            <input type="text" id = "text-r-2" class="text-rgb" value="255" oninput="changeRange('text', 'r', '2');" />
+            <input type="range" id = "range-r-2" value="255" min="0" max="255" step="1" oninput="changeRange('range', 'r', '2');" />
+            <input type="text" id = "text-r-2" value="255" oninput="changeRange('text', 'r', '2');" />
           </div>
           <div>
             <label for="range-g-2" class="label-rgb">G</label>
-            <input type="range" id = "range-g-2" class="range-rgb" value="255" min="0" max="255" step="1" oninput="changeRange('range', 'g', '2');" />
-            <input type="text" id = "text-g-2" class="text-rgb" value="255" oninput="changeRange('text', 'g', '2');" />
+            <input type="range" id = "range-g-2" value="255" min="0" max="255" step="1" oninput="changeRange('range', 'g', '2');" />
+            <input type="text" id = "text-g-2" value="255" oninput="changeRange('text', 'g', '2');" />
           </div>
           <div>
             <label for="range-b-2" class="label-rgb">B</label>
-            <input type="range" id = "range-b-2" class="range-rgb" value="255" min="0" max="255" step="1" oninput="changeRange('range', 'b', '2');" />
-            <input type="text" id = "text-b-2" class="text-rgb" value="255" oninput="changeRange('text', 'b', '2');" />
+            <input type="range" id = "range-b-2" value="255" min="0" max="255" step="1" oninput="changeRange('range', 'b', '2');" />
+            <input type="text" id = "text-b-2" value="255" oninput="changeRange('text', 'b', '2');" />
           </div>
         </div>
         <div class = "hex-area">
@@ -95,18 +96,18 @@
         <div class = "rgb-area">
           <div>
             <label for="range-r-3" class="label-rgb">R</label>
-            <input type="range" id = "range-r-3" class="range-rgb" value="255" min="0" max="255" step="1" oninput="changeRange('range', 'r', '3');" />
-            <input type="text" id = "text-r-3" class="text-rgb" value="255" oninput="changeRange('text', 'r', '3');" />
+            <input type="range" id = "range-r-3" value="255" min="0" max="255" step="1" oninput="changeRange('range', 'r', '3');" />
+            <input type="text" id = "text-r-3" value="255" oninput="changeRange('text', 'r', '3');" />
           </div>
           <div>
             <label for="range-g-3" class="label-rgb">G</label>
-            <input type="range" id = "range-g-3" class="range-rgb" value="255" min="0" max="255" step="1" oninput="changeRange('range', 'g', '3');" />
-            <input type="text" id = "text-g-3" class="text-rgb" value="255" oninput="changeRange('text', 'g', '3');" />
+            <input type="range" id = "range-g-3" value="255" min="0" max="255" step="1" oninput="changeRange('range', 'g', '3');" />
+            <input type="text" id = "text-g-3" value="255" oninput="changeRange('text', 'g', '3');" />
           </div>
           <div>
             <label for="range-b-3" class="label-rgb">B</label>
-            <input type="range" id = "range-b-3" class="range-rgb" value="255" min="0" max="255" step="1" oninput="changeRange('range', 'b', '3');" />
-            <input type="text" id = "text-b-3" class="text-rgb" value="255" oninput="changeRange('text', 'b', '3');" />
+            <input type="range" id = "range-b-3" value="255" min="0" max="255" step="1" oninput="changeRange('range', 'b', '3');" />
+            <input type="text" id = "text-b-3" value="255" oninput="changeRange('text', 'b', '3');" />
           </div>
         </div>
         <div class = "hex-area">
@@ -123,18 +124,18 @@
         <div class = "rgb-area">
           <div>
             <label for="range-r-4" class="label-rgb">R</label>
-            <input type="range" id = "range-r-4" class="range-rgb" value="255" min="0" max="255" step="1" oninput="changeRange('range', 'r', '4');" />
-            <input type="text" id = "text-r-4" class="text-rgb" value="255" oninput="changeRange('text', 'r', '4');" />
+            <input type="range" id = "range-r-4" value="255" min="0" max="255" step="1" oninput="changeRange('range', 'r', '4');" />
+            <input type="text" id = "text-r-4" value="255" oninput="changeRange('text', 'r', '4');" />
           </div>
           <div>
             <label for="range-g-4" class="label-rgb">G</label>
-            <input type="range" id = "range-g-4" class="range-rgb" value="255" min="0" max="255" step="1" oninput="changeRange('range', 'g', '4');" />
-            <input type="text" id = "text-g-4" class="text-rgb" value="255" oninput="changeRange('text', 'g', '4');" />
+            <input type="range" id = "range-g-4" value="255" min="0" max="255" step="1" oninput="changeRange('range', 'g', '4');" />
+            <input type="text" id = "text-g-4" value="255" oninput="changeRange('text', 'g', '4');" />
           </div>
           <div>
             <label for="range-b-4" class="label-rgb">B</label>
-            <input type="range" id = "range-b-4" class="range-rgb" value="255" min="0" max="255" step="1" oninput="changeRange('range', 'b', '4');" />
-            <input type="text" id = "text-b-4" class="text-rgb" value="255" oninput="changeRange('text', 'b', '4');" />
+            <input type="range" id = "range-b-4" value="255" min="0" max="255" step="1" oninput="changeRange('range', 'b', '4');" />
+            <input type="text" id = "text-b-4" value="255" oninput="changeRange('text', 'b', '4');" />
           </div>
         </div>
         <div class = "hex-area">
@@ -151,18 +152,18 @@
         <div class = "rgb-area">
           <div>
             <label for="range-r-5" class="label-rgb">R</label>
-            <input type="range" id = "range-r-5" class="range-rgb" value="255" min="0" max="255" step="1" oninput="changeRange('range', 'r', '5');" />
-            <input type="text" id = "text-r-5" class="text-rgb" value="255" oninput="changeRange('text', 'r', '5');" />
+            <input type="range" id = "range-r-5" value="255" min="0" max="255" step="1" oninput="changeRange('range', 'r', '5');" />
+            <input type="text" id = "text-r-5" value="255" oninput="changeRange('text', 'r', '5');" />
           </div>
           <div>
             <label for="range-g-5" class="label-rgb">G</label>
-            <input type="range" id = "range-g-5" class="range-rgb" value="255" min="0" max="255" step="1" oninput="changeRange('range', 'g', '5');" />
-            <input type="text" id = "text-g-5" class="text-rgb" value="255" oninput="changeRange('text', 'g', '5');" />
+            <input type="range" id = "range-g-5" value="255" min="0" max="255" step="1" oninput="changeRange('range', 'g', '5');" />
+            <input type="text" id = "text-g-5" value="255" oninput="changeRange('text', 'g', '5');" />
           </div>
           <div>
             <label for="range-b-5" class="label-rgb">B</label>
-            <input type="range" id = "range-b-5" class="range-rgb" value="255" min="0" max="255" step="1" oninput="changeRange('range', 'b', '5');" />
-            <input type="text" id = "text-b-5" class="text-rgb" value="255" oninput="changeRange('text', 'b', '5');" />
+            <input type="range" id = "range-b-5" value="255" min="0" max="255" step="1" oninput="changeRange('range', 'b', '5');" />
+            <input type="text" id = "text-b-5" value="255" oninput="changeRange('text', 'b', '5');" />
           </div>
         </div>
         <div class = "hex-area">
