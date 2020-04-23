@@ -1,0 +1,87 @@
+*{
+  width: 100%;
+}
+
+/* ===============================================
+      ID
+=============================================== */
+#wrapper{
+  width: 600px;
+  padding: 30px;
+  margin: 0 auto;
+}
+#header{
+  text-align: center;
+  border-top: 1px solid #555555;
+  border-bottom: 1px solid #555555;;
+}
+#main{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 30px 0px;
+
+}
+#footer{
+  text-align: right;
+  border-top: 1px solid #555555;
+}
+
+/* ===============================================
+      Class
+=============================================== */
+.block-interior{
+  width: 100px;
+}
+.block-header{
+  text-align: center;
+  margin-bottom: 15px;
+  border-top: 1px solid #555555;
+  border-bottom: 1px solid #555555;;
+}
+.color-interior{
+  width: 98px;
+  height: 98px;
+  border: 1px solid #555555;
+}
+.rgb-area, .hex-area{
+  padding: 10px 0px;
+  text-align : center ;
+  border-bottom: 1px solid #555555;
+}
+.label-rgb{
+  width: 10px;
+  display: none;
+}
+.range-rgb{
+  width: 65px;
+  vertical-align : middle;
+}
+.text-rgb{
+  width: 25px;
+  text-align: center;
+}
+.text-hex{
+  width: 80px;
+  text-align: center;
+}
+
+/* ===============================================
+      Class(Label)
+=============================================== */
+.label-interior{
+  width: 40px;
+}
+.block-header-l{
+  text-align: center;
+  margin-bottom: 15px;
+}
+.color-interior-l{
+  width: 40px;
+  height: 102px;
+  background-color: #555555;
+}
+.rgb-area-l, .hex-area-l{
+  padding: 11px 0px;
+  text-align : center ;
+}

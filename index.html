@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="jp">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <title>myColorPicker</title>
+
+  <link rel="stylesheet" href="css/normalize.css" />
+  <link rel="stylesheet" href="css/gannet.css" />
+  <link rel="stylesheet" href="css/style.css" />
+
+  <script src="js/myColorPicker.js"></script>
+
+</head>
+
+<body id = "wrapper">
+
+  <header id = "header">
+    <h3>myColorPicker</h3>
+  </header>
+
+  <main id = "main">
+    <section  class="label-interior">
+      <div class = "block-header-l"><h5>No.</h5></div>
+      <div class = "color-interior-l"></div>
+      <div class = "rgb-area-l">
+        <p>R</p>
+        <p>G</p>
+        <p>B</p>
+      </div>
+      <div class = "hex-area-l"><p>HEX</p></div>
+    </section>
+    <!-- 1. =============================================================================================================================================== -->
+    <section class = "block-interior">
+      <div class = "block-header"><h5>1.</h5></div>
+      <div id = "color-1" class = "color-interior"></div>
+      <from class = "form-area">
+        <div class = "rgb-area">
+          <div>
+            <label for="range-r-1" class="label-rgb">R</label>
+            <input type="range" id = "range-r-1" class="range-rgb" value="255" min="0" max="255" step="1" oninput="changeRange('range', 'r', '1');" />
+            <input type="text" id = "text-r-1" class="text-rgb" value="255" oninput="changeRange('text', 'r', '1');" />
+          </div>
+          <div>
+            <label for="range-g-1" class="label-rgb">G</label>
+            <input type="range" id = "range-g-1" class="range-rgb" value="255" min="0" max="255" step="1" oninput="changeRange('range', 'g', '1');" />
+            <input type="text" id = "text-g-1" class="text-rgb" value="255" oninput="changeRange('text', 'g', '1');" />
+          </div>
+          <div>
+            <label for="range-b-1" class="label-rgb">B</label>
+            <input type="range" id = "range-b-1" class="range-rgb" value="255" min="0" max="255" step="1" oninput="changeRange('range', 'b', '1');" />
+            <input type="text" id = "text-b-1" class="text-rgb" value="255" oninput="changeRange('text', 'b', '1');" />
+          </div>
+        </div>
+        <div class = "hex-area">
+          <input type="text" id = "text-hex-1" class="text-hex" value="#ffffff" oninput="reflectHex('1');"/>
+        </div>
+      </form>
+    </section>
+
+    <!-- 2. =============================================================================================================================================== -->
+    <section class = "block-interior">
+      <div class = "block-header"><h5>2.</h5></div>
+      <div id = "color-2" class = "color-interior"></div>
+      <from class = "form-area">
+        <div class = "rgb-area">
+          <div>
+            <label for="range-r-2" class="label-rgb">R</label>
+            <input type="range" id = "range-r-2" class="range-rgb" value="255" min="0" max="255" step="1" oninput="changeRange('range', 'r', '2');" />
+            <input type="text" id = "text-r-2" class="text-rgb" value="255" oninput="changeRange('text', 'r', '2');" />
+          </div>
+          <div>
+            <label for="range-g-2" class="label-rgb">G</label>
+            <input type="range" id = "range-g-2" class="range-rgb" value="255" min="0" max="255" step="1" oninput="changeRange('range', 'g', '2');" />
+            <input type="text" id = "text-g-2" class="text-rgb" value="255" oninput="changeRange('text', 'g', '2');" />
+          </div>
+          <div>
+            <label for="range-b-2" class="label-rgb">B</label>
+            <input type="range" id = "range-b-2" class="range-rgb" value="255" min="0" max="255" step="1" oninput="changeRange('range', 'b', '2');" />
+            <input type="text" id = "text-b-2" class="text-rgb" value="255" oninput="changeRange('text', 'b', '2');" />
+          </div>
+        </div>
+        <div class = "hex-area">
+          <input type="text" id = "text-hex-2" class="text-hex" value="#ffffff" oninput="reflectHex('2');"/>
+        </div>
+      </form>
+    </section>
+
+    <!-- 3. =============================================================================================================================================== -->
+    <section class = "block-interior">
+      <div class = "block-header"><h5>3.</h5></div>
+      <div id = "color-3" class = "color-interior"></div>
+      <from class = "form-area">
+        <div class = "rgb-area">
+          <div>
+            <label for="range-r-3" class="label-rgb">R</label>
+            <input type="range" id = "range-r-3" class="range-rgb" value="255" min="0" max="255" step="1" oninput="changeRange('range', 'r', '3');" />
+            <input type="text" id = "text-r-3" class="text-rgb" value="255" oninput="changeRange('text', 'r', '3');" />
+          </div>
+          <div>
+            <label for="range-g-3" class="label-rgb">G</label>
+            <input type="range" id = "range-g-3" class="range-rgb" value="255" min="0" max="255" step="1" oninput="changeRange('range', 'g', '3');" />
+            <input type="text" id = "text-g-3" class="text-rgb" value="255" oninput="changeRange('text', 'g', '3');" />
+          </div>
+          <div>
+            <label for="range-b-3" class="label-rgb">B</label>
+            <input type="range" id = "range-b-3" class="range-rgb" value="255" min="0" max="255" step="1" oninput="changeRange('range', 'b', '3');" />
+            <input type="text" id = "text-b-3" class="text-rgb" value="255" oninput="changeRange('text', 'b', '3');" />
+          </div>
+        </div>
+        <div class = "hex-area">
+          <input type="text" id = "text-hex-3" class="text-hex" value="#ffffff" oninput="reflectHex('3');"/>
+        </div>
+      </form>
+    </section>
+
+    <!-- 4. =============================================================================================================================================== -->
+    <section class = "block-interior">
+      <div class = "block-header"><h5>4.</h5></div>
+      <div id = "color-4" class = "color-interior"></div>
+      <from class = "form-area">
+        <div class = "rgb-area">
+          <div>
+            <label for="range-r-4" class="label-rgb">R</label>
+            <input type="range" id = "range-r-4" class="range-rgb" value="255" min="0" max="255" step="1" oninput="changeRange('range', 'r', '4');" />
+            <input type="text" id = "text-r-4" class="text-rgb" value="255" oninput="changeRange('text', 'r', '4');" />
+          </div>
+          <div>
+            <label for="range-g-4" class="label-rgb">G</label>
+            <input type="range" id = "range-g-4" class="range-rgb" value="255" min="0" max="255" step="1" oninput="changeRange('range', 'g', '4');" />
+            <input type="text" id = "text-g-4" class="text-rgb" value="255" oninput="changeRange('text', 'g', '4');" />
+          </div>
+          <div>
+            <label for="range-b-4" class="label-rgb">B</label>
+            <input type="range" id = "range-b-4" class="range-rgb" value="255" min="0" max="255" step="1" oninput="changeRange('range', 'b', '4');" />
+            <input type="text" id = "text-b-4" class="text-rgb" value="255" oninput="changeRange('text', 'b', '4');" />
+          </div>
+        </div>
+        <div class = "hex-area">
+          <input type="text" id = "text-hex-4" class="text-hex" value="#ffffff" oninput="reflectHex('4');"/>
+        </div>
+      </form>
+    </section>
+
+    <!-- 5. =============================================================================================================================================== -->
+    <section class = "block-interior">
+      <div class = "block-header"><h5>5.</h5></div>
+      <div id = "color-5" class = "color-interior"></div>
+      <from class = "form-area">
+        <div class = "rgb-area">
+          <div>
+            <label for="range-r-5" class="label-rgb">R</label>
+            <input type="range" id = "range-r-5" class="range-rgb" value="255" min="0" max="255" step="1" oninput="changeRange('range', 'r', '5');" />
+            <input type="text" id = "text-r-5" class="text-rgb" value="255" oninput="changeRange('text', 'r', '5');" />
+          </div>
+          <div>
+            <label for="range-g-5" class="label-rgb">G</label>
+            <input type="range" id = "range-g-5" class="range-rgb" value="255" min="0" max="255" step="1" oninput="changeRange('range', 'g', '5');" />
+            <input type="text" id = "text-g-5" class="text-rgb" value="255" oninput="changeRange('text', 'g', '5');" />
+          </div>
+          <div>
+            <label for="range-b-5" class="label-rgb">B</label>
+            <input type="range" id = "range-b-5" class="range-rgb" value="255" min="0" max="255" step="1" oninput="changeRange('range', 'b', '5');" />
+            <input type="text" id = "text-b-5" class="text-rgb" value="255" oninput="changeRange('text', 'b', '5');" />
+          </div>
+        </div>
+        <div class = "hex-area">
+          <input type="text" id = "text-hex-5" class="text-hex" value="#ffffff" oninput="reflectHex('5');"/>
+        </div>
+      </form>
+    </section>
+  </main>
+
+  <footer id = "footer">
+    <p>@sierra2501</p>
+  </footer>
+
+</body>
+</html>
