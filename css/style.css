@@ -44,7 +44,8 @@
   height: 98px;
   border: 1px solid #555555;
 }
-.rgb-area, .hex-area{
+.rgb-area, .hex-area,
+.sh-btn-area{
   padding: 10px 0px;
   text-align : center ;
   border-bottom: 1px solid #555555;
@@ -72,7 +73,10 @@
   width: 80px;
   text-align: center;
 }
-
+.btn-sh{
+  width: 80px;
+  margin: 10px 0px;
+}
 /* ===============================================
       Class(Label)
 =============================================== */

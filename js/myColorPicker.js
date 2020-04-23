@@ -71,7 +71,7 @@ function clickCountBtn (color, point, count) {
         document.getElementById('text-' + color + '-' + point).value = num;
     }
 
-    reflectRgb ("text", color, point)
+    reflectRgb ("text", color, point);
 
 }
 

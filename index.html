@@ -9,9 +9,62 @@
   <link rel="stylesheet" href="css/normalize.css" />
   <link rel="stylesheet" href="css/gannet.css" />
   <link rel="stylesheet" href="css/style.css" />
-
+  <script src="js/readExternalFile.js"></script>
   <script src="js/checkShade3D.js"></script>
   <script src="js/myColorPicker.js"></script>
+
+  <script>
+    function clickShadeBtn ( point, mode ) {
+
+      var py_src
+      var result_str
+      var result_ary
+      var r
+      var g
+      var b
+      var rgb_array
+
+      // 外部ファイルのPythonコードを読み込み.
+      py_src = readFileToString('py/setDiffuseColor.py');
+
+      // 抽出する ==========================================================================================
+      if (mode === "EXTRACT"){
+
+        py_src = py_src.replace("TARGET_MODE", "\"" + mode + "\"");
+        py_src = py_src.replace("TARGET_RGB", [0,0,0]);
+
+        // スクリプトを実行.
+        result_str = window.external.setScript(py_src);
+        result_ary = result_str.split(',');
+
+        document.getElementById('text-r-' + point).value = parseInt(result_ary[0]*255)
+        document.getElementById('text-g-' + point).value = parseInt(result_ary[1]*255)
+        document.getElementById('text-b-' + point).value = parseInt(result_ary[2]*255)
+
+        reflectRgb ("text", "r", point);
+        reflectRgb ("text", "g", point);
+        reflectRgb ("text", "b", point);
+
+      // 設定する ==========================================================================================
+      }else if (mode === "SET"){
+
+        // textからRGBの値を取り出す.
+        r = parseInt(document.getElementById('text-r-' + point).value);
+        g = parseInt(document.getElementById('text-g-' + point).value);
+        b = parseInt(document.getElementById('text-b-' + point).value);
+        rgb_array = [r/255, g/255, b/255];
+    
+        py_src = py_src.replace("TARGET_MODE", "\"" + mode + "\"");
+        py_src = py_src.replace("TARGET_RGB", rgb_array);
+
+        // スクリプトを実行.
+        window.external.setScript(py_src);
+
+      }
+    }
+  </script>
+
+
 
 </head>
 
@@ -63,6 +116,14 @@
         <div class = "hex-area">
           <input type="text" id = "text-hex-1" class="text-hex" value="#ffffff" oninput="reflectHex('1');"/>
         </div>
+        <div class = "sh-btn-area">
+          <div>
+            <input type="button" value="抽出する" class="btn-sh" onclick="clickShadeBtn('1' , 'EXTRACT');"/>
+          </div>
+          <div>
+            <input type="button" value="設定する" class="btn-sh" onclick="clickShadeBtn('1', 'SET');"/>
+          </div>
+        </div>
       </form>
     </section>
 
@@ -96,6 +157,14 @@
         </div>
         <div class = "hex-area">
           <input type="text" id = "text-hex-2" class="text-hex" value="#ffffff" oninput="reflectHex('2');"/>
+        </div>
+        <div class = "sh-btn-area">
+          <div>
+            <input type="button" value="抽出する" class="btn-sh" onclick="clickShadeBtn('2' , 'EXTRACT');"/>
+          </div>
+          <div>
+            <input type="button" value="設定する" class="btn-sh" onclick="clickShadeBtn('2', 'SET');"/>
+          </div>
         </div>
       </form>
     </section>
@@ -131,6 +200,14 @@
         <div class = "hex-area">
           <input type="text" id = "text-hex-3" class="text-hex" value="#ffffff" oninput="reflectHex('3');"/>
         </div>
+        <div class = "sh-btn-area">
+          <div>
+            <input type="button" value="抽出する" class="btn-sh" onclick="clickShadeBtn('3' , 'EXTRACT');"/>
+          </div>
+          <div>
+            <input type="button" value="設定する" class="btn-sh" onclick="clickShadeBtn('3', 'SET');"/>
+          </div>
+        </div>
       </form>
     </section>
 
@@ -165,6 +242,14 @@
         <div class = "hex-area">
           <input type="text" id = "text-hex-4" class="text-hex" value="#ffffff" oninput="reflectHex('4');"/>
         </div>
+        <div class = "sh-btn-area">
+          <div>
+            <input type="button" value="抽出する" class="btn-sh" onclick="clickShadeBtn('4' , 'EXTRACT');"/>
+          </div>
+          <div>
+            <input type="button" value="設定する" class="btn-sh" onclick="clickShadeBtn('4', 'SET');"/>
+          </div>
+        </div>
       </form>
     </section>
 
@@ -198,6 +283,14 @@
         </div>
         <div class = "hex-area">
           <input type="text" id = "text-hex-5" class="text-hex" value="#ffffff" oninput="reflectHex('5');"/>
+        </div>
+        <div class = "sh-btn-area">
+          <div>
+            <input type="button" value="抽出する" class="btn-sh" onclick="clickShadeBtn('5' , 'EXTRACT');"/>
+          </div>
+          <div>
+            <input type="button" value="設定する" class="btn-sh" onclick="clickShadeBtn('5', 'SET');"/>
+          </div>
         </div>
       </form>
     </section>

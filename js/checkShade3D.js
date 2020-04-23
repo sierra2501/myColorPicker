@@ -15,6 +15,10 @@ function checkShade3D () {
         for (var j=0; j<btn_element.length; j++){
             btn_element[j].style.display = "none";
         }
+        shade_element = document.getElementsByClassName("sh-btn-area");
+        for (var l=0; l<shade_element.length; l++){
+            shade_element[l].style.display = "none";
+        }
         for (var i=1; i<6; i++){
             document.getElementById("range-r-" + String(i)).className="range-rgb-web";
             document.getElementById("range-g-" + String(i)).className="range-rgb-web";
