@@ -2,7 +2,7 @@
 // ============================================================================================================
 // RGBのスライダとテキストボックスの値を反映
 // ============================================================================================================
-function changeRange (type, color, point) {
+function reflectRgb (type, color, point) {
     
     // elementの取得
     var range_element = document.getElementById('range-' + color + '-' + point);
@@ -16,16 +16,6 @@ function changeRange (type, color, point) {
     }else{
     }
 
-    // BackgroundColorを変更
-    changeBackgroundColor(point);
-}
-
-// ============================================================================================================
-// BackgroundColorを変更
-// ============================================================================================================
-function changeBackgroundColor (point) {
-
-    // rangeの値を取得する
     var r = parseInt(document.getElementById('range-r-' + point).value);
     var g = parseInt(document.getElementById('range-g-' + point).value);
     var b = parseInt(document.getElementById('range-b-' + point).value);
@@ -36,26 +26,6 @@ function changeBackgroundColor (point) {
     // BackgroundColorを変更とテキストボックスに変換した値を書き込む
     document.getElementById('color-' + point).style.backgroundColor = hex;
     document.getElementById('text-hex-' + point).value = hex;
-
-}
-
-// ============================================================================================================
-// 10進数から16進数へ変換する
-// ============================================================================================================
-function changeDecimalToHex(num) {
-    var hex = num.toString(16);
-    if (num < 16){
-        hex = "0" + hex;
-    }
-    return hex;
-}
-
-// ============================================================================================================
-// 16進数から10進数へ変換する
-// ============================================================================================================
-    function changeHexToDecimal(num) {
-    var decimal = parseInt(num, 16).toString(10);
-    return decimal;
 }
 
 // ============================================================================================================
@@ -101,6 +71,25 @@ function clickCountBtn (color, point, count) {
         document.getElementById('text-' + color + '-' + point).value = num;
     }
 
-    changeRange ("text", color, point)
+    reflectRgb ("text", color, point)
 
+}
+
+// ============================================================================================================
+// 10進数から16進数へ変換する
+// ============================================================================================================
+function changeDecimalToHex(num) {
+    var hex = num.toString(16);
+    if (num < 16){
+        hex = "0" + hex;
+    }
+    return hex;
+}
+
+// ============================================================================================================
+// 16進数から10進数へ変換する
+// ============================================================================================================
+    function changeHexToDecimal(num) {
+    var decimal = parseInt(num, 16).toString(10);
+    return decimal;
 }
