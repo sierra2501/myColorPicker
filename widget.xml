@@ -7,6 +7,6 @@
     <version>1.0</version>
     <description lang="ja">マイカラーピッカー</description>
     <description lang="en">myColorPicker</description>
-    <window initial_size="400 200" position="0.42 0.63" resizeable="true">
+    <window initial_size="750 650" position="0.5 0.5" resizeable="false">
     </window>
 </widget>
